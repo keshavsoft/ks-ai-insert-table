@@ -1,6 +1,6 @@
 {
   "name": "ks-ai-insert-table",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "CLI to build for appjs, the endpoints",
   "keywords": [
     "cli",
@@ -10,7 +10,7 @@
     "project-generator"
   ],
   "dependencies": {
-    "express-fix-any-js": "^1.28.7"
+    "express-fix-any-js": "^1.31.1"
   },
   "type": "module",
   "exports": {
