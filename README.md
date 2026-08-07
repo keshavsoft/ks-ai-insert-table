@@ -1,6 +1,6 @@
 # ks-ai-insert-table 🚀
 
-> **Automatically generate, update, and organize Express.js routing files with safe, idempotent code generation and integrated environment validations.**
+> **Automatically scaffold table routers and insert route registrations into your Express.js `routes.js` file with safe, idempotent code injections.**
 
 [![npm version](https://img.shields.io/npm/v/ks-ai-insert-table.svg?style=flat-square)](https://www.npmjs.com/package/ks-ai-insert-table)
 [![License](https://img.shields.io/npm/l/ks-ai-insert-table.svg?style=flat-square)](LICENSE)
@@ -9,11 +9,16 @@
 
 # 📖 Overview
 
-`ks-ai-insert-table` is a lightweight developer utility and AST scaffold engine that automatically generates and updates Express.js routing files.
+`ks-ai-insert-table` is a lightweight developer utility and AST scaffold engine designed strictly to update Express.js routing files.
 
-It safely inserts router imports, endpoint methods, version routes, and table routes while preventing duplicate code generation. Starting in version 5, it features a built-in pre-execution validation step powered by `ks-ai-insert-table-check` to safeguard your workspace against incorrect generation environments.
+It targets the `fromRoutesJsEnd` structure, meaning it:
+1. Copies a table's endpoint router template to a new subfolder in your workspace.
+2. Injects import statements into your central `routes.js` file.
+3. Injects corresponding `router.use()` declarations to mount the table's router.
 
-The project serves as one of the core building blocks of the **KeshavSoft API Generation Suite**, enabling CLI tools and VS Code extensions to scaffold Express APIs with minimal effort.
+Version 5 introduces a pre-execution validation gate powered by `ks-ai-insert-table-check` to verify that `routes.js` exists in the target path before executing any code changes.
+
+The project is a core building block of the **KeshavSoft API Generation Suite**, enabling CLI generators and VS Code extensions to create database table endpoints programmatically with zero duplication risk.
 
 ---
 
@@ -27,20 +32,17 @@ The project serves as one of the core building blocks of the **KeshavSoft API Ge
 
 # 🚀 Generation Flow
 
-## 1. App.js Generator
-Automatically updates **app.js** with imports and registrations.
+## 1. Environment Pre-Check (v5+)
+Runs `ks-ai-insert-table-check` against the target workspace directory to confirm a valid central `routes.js` file is present.
 
-## 2. Version Route Generator
-Automatically organizes routes into version folders like `/v1` and `/v2` for scalability.
+## 2. Copy Table Template
+Copies table router template boilerplate code (`end-points.js`) to a new subdirectory matching the table name.
 
-## 3. Table Route Generator
-Creates Express routes based on your schema table name configurations.
+## 3. Inject Imports
+Parses the target `routes.js` and injects import statements for the newly generated table router.
 
-## 4. Endpoint Generator
-Generates Express endpoint methods (GET, POST, PUT, DELETE) in router files.
-
-## 5. Integration Validator (New in v5)
-Uses the `ks-ai-insert-table-check` module to verify target path readiness before any write or scaffolding operations take place.
+## 4. Register Route Usage
+Safely appends `router.use("/tableName", routerFromTableName)` statements to register the route mount point in `routes.js`.
 
 ---
 
@@ -48,6 +50,14 @@ Uses the `ks-ai-insert-table-check` module to verify target path readiness befor
 
 ```bash
 npm install ks-ai-insert-table
+```
+
+---
+
+# 💻 CLI Usage
+
+```bash
+npx ks-ai-insert-table <tableName> [toPath] [--alterArray]
 ```
 
 ---
