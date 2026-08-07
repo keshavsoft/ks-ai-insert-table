@@ -13,6 +13,13 @@
     "express-fix-any-js": "^1.31.1",
     "ks-ai-insert-table-check": "^1.4.3"
   },
+  "devDependencies": {
+    "ks-delete-workflow-runs": "^1.0.0"
+  },
+  "scripts": {
+    "delete-runs": "node delete-workflow-runs.js",
+    "npm-publish": "node npm-publish.js"
+  },
   "type": "module",
   "exports": {
     ".": "./index.js"
