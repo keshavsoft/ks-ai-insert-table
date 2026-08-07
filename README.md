@@ -1,85 +1,53 @@
-# template-provider 🚀
+# ks-ai-insert-table 🚀
 
-> **Automatically generate, update, and organize Express.js routing files with safe, idempotent code generation.**
+> **Automatically generate, update, and organize Express.js routing files with safe, idempotent code generation and integrated environment validations.**
 
-[![npm version](https://img.shields.io/npm/v/template-provider.svg?style=flat-square)](https://www.npmjs.com/package/template-provider)
-[![License](https://img.shields.io/npm/l/template-provider.svg?style=flat-square)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/ks-ai-insert-table.svg?style=flat-square)](https://www.npmjs.com/package/ks-ai-insert-table)
+[![License](https://img.shields.io/npm/l/ks-ai-insert-table.svg?style=flat-square)](LICENSE)
 
 ---
 
 # 📖 Overview
 
-`template-provider` is a lightweight developer utility that automatically generates and updates Express.js routing files.
+`ks-ai-insert-table` is a lightweight developer utility and AST scaffold engine that automatically generates and updates Express.js routing files.
 
-It safely inserts router imports, endpoint methods, version routes, and table routes while preventing duplicate code generation.
+It safely inserts router imports, endpoint methods, version routes, and table routes while preventing duplicate code generation. Starting in version 5, it features a built-in pre-execution validation step powered by `ks-ai-insert-table-check` to safeguard your workspace against incorrect generation environments.
 
 The project serves as one of the core building blocks of the **KeshavSoft API Generation Suite**, enabling CLI tools and VS Code extensions to scaffold Express APIs with minimal effort.
 
 ---
 
+# 📂 Version History & Support
 
-# 📂 Project Structure
-
-
-Each folder demonstrates a different stage of Express route generation.
+* **v1-v3**: Legacy implementations supporting dynamic router insertions and code modifications.
+* **v4**: Introduction of positional arguments and enhanced error checking patterns.
+* **v5 (Latest)**: Integrates `ks-ai-insert-table-check` to verify file environments before executing modifications, ensuring high safety boundaries.
 
 ---
 
 # 🚀 Generation Flow
 
----
-
 ## 1. App.js Generator
-
-The journey of every API begins with app.js. Rather than manually wiring routers every time, the App.js Generator automatically connects them for you. It safely inserts imports and route registrations without creating duplicates, ensuring your application is always organized and ready to grow.
-
-### Purpose
-
-Automatically updates **app.js**.
-
-### Generates
-
-- Router imports
-- app.use() registrations
-- API router configuration
-
-
+Automatically updates **app.js** with imports and registrations.
 
 ## 2. Version Route Generator
-
-Great APIs grow over time, and so do their versions. The Version Route Generator automatically organizes routes into version folders like /v1 and /v2, making your API clean, scalable, and easy to maintain.
-
-
-### Purpose
-
-Creates version-based routing.
-
----
+Automatically organizes routes into version folders like `/v1` and `/v2` for scalability.
 
 ## 3. Table Route Generator
-Every table deserves its own route. The Table Route Generator automatically creates routes from your schema, connecting tables like Customers, Doctors, and Products into a clean, scalable Express API structure with minimal effort.
+Creates Express routes based on your schema table name configurations.
 
-
-### Purpose
-
-Creates routes based on schema table names.
-
----
 ## 4. Endpoint Generator
+Generates Express endpoint methods (GET, POST, PUT, DELETE) in router files.
 
-An API is only useful when it can perform actions. The Endpoint Generator automatically creates Express endpoint methods for GET, POST, PUT, and DELETE, giving you a clean starting point for every new route while avoiding repetitive code.
-
-
-### Purpose
-
-Creates endpoint methods for Express routers.
+## 5. Integration Validator (New in v5)
+Uses the `ks-ai-insert-table-check` module to verify target path readiness before any write or scaffolding operations take place.
 
 ---
 
 # 📦 Installation
 
 ```bash
-npm install template-provider
+npm install ks-ai-insert-table
 ```
 
 ---
@@ -89,8 +57,7 @@ npm install template-provider
 Complete documentation is available here:
 
 **Documentation Portal**
-
-https://keshavsoft.github.io/template-provider/
+https://keshavsoft.github.io/ks-ai-insert-table/
 
 ---
 
@@ -98,8 +65,7 @@ https://keshavsoft.github.io/template-provider/
 
 Developed and maintained by **KeshavSoft**
 
-GitHub:
-https://github.com/keshavsoft
+GitHub: [keshavsoft](https://github.com/keshavsoft)
 
 ---
 

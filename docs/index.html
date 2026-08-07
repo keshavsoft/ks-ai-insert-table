@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>template-provider | Developer Hub</title>
+    <title>ks-ai-insert-table | Developer Hub</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +20,16 @@
 <body>
 
     <!-- Navigation Bar -->
-    <!-- Navigation Bar -->
     <nav>
         <div class="logo">
-            <a href="#"> template-provider</a>
+            <a href="#">ks-ai-insert-table</a>
         </div>
         <ul>
             <li><a href="#Documentation">Documentation</a></li>
             <li><a href="#Version">Version Portal</a></li>
-
         </ul>
 
-        <a href="https://github.com/keshavsoft/template-provider" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/keshavsoft/ks-ai-insert-table" target="_blank" rel="noopener noreferrer"
             class="btn-github">
             <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
                 <path
@@ -48,7 +46,7 @@
             <div class="section-header">
                 <h2>📖 Overview</h2>
             </div>
-            <p><code>template-provider</code> is a lightweight developer utility that automatically generates and
+            <p><code>ks-ai-insert-table</code> is a lightweight developer utility that automatically generates and
                 updates
                 Express.js routing files.</p>
             <p style="margin-top: 8px;">It safely inserts router imports, endpoint methods, version routes, and table
@@ -75,6 +73,7 @@
                 <div class="feature-item">✅ Generates GET, POST, PUT and DELETE endpoints</div>
                 <div class="feature-item">✅ Maintains clean route formatting</div>
                 <div class="feature-item">✅ Supports multiple generator versions</div>
+                <div class="feature-item">✅ Environment check integration (v5+)</div>
             </div>
         </section>
 
@@ -82,13 +81,16 @@
         <section class="section-block">
             <div class="section-header">
                 <h2>🚀 Generation Flow</h2>
-                <p>How template-provider processes and scaffolds your Express APIs step-by-step.</p>
+                <p>How ks-ai-insert-table processes and scaffolds your Express APIs step-by-step.</p>
             </div>
 
             <div class="simulator-container">
                 <div class="sim-panel">
                     <h3>Workflow Visual</h3>
                     <div class="code-preview">Run Generator
+                        │
+                        ▼
+                        Check Path (v5)
                         │
                         ▼
                         Generate App.js
@@ -124,6 +126,10 @@
                         <label>4. Endpoint Generator</label>
                         <input type="text" readonly value="Path: Api/v1/Doctors (Generates GET, POST, PUT, DELETE)">
                     </div>
+                    <div class="form-group">
+                        <label>5. Integration Validator (v5)</label>
+                        <input type="text" readonly value="Uses ks-ai-insert-table-check to verify paths before run">
+                    </div>
                 </div>
             </div>
         </section>
@@ -145,33 +151,30 @@
                 <a href="./endpoint-generator.html">
                     <div class="feature-item">✅ End Points Generation</div>
                 </a>
-
             </div>
         </section>
+        
         <section class="section-block" id="DocumentationPortal">
             <div class="section-header">
                 <h2>🌐 Documentation Portal</h2>
                 <p style="margin-top: 4px;">Access complete guides, API specs, and generators</p>
-
             </div>
             <div class="docs-list">
-                <a href="https://keshavsoft.github.io/template-provider/" target="_blank" rel="noopener noreferrer"
+                <a href="https://keshavsoft.github.io/ks-ai-insert-table/" target="_blank" rel="noopener noreferrer"
                     class="doc-link">
                     📘 Visit Docs Portal
                 </a>
-                <a href="https://github.com/keshavsoft/template-provider" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/keshavsoft/ks-ai-insert-table" target="_blank" rel="noopener noreferrer"
                     class="doc-link">
                     ⭐ View on GitHub
                 </a>
-
             </div>
-
         </section>
+        
         <section class="section-block" id="Version">
             <div class="section-header">
                 <h2>🌐 Version Portal</h2>
                 <p style="margin-top: 4px;">Access version wise updated code</p>
-
             </div>
             <div class="docs-list">
                 <a href="./v1/index.html" target="_blank" rel="noopener noreferrer" class="doc-link">
@@ -183,11 +186,13 @@
                 <a href="./v3/index.html" target="_blank" rel="noopener noreferrer" class="doc-link">
                     Version V3
                 </a>
-                <ul>
-
-                </ul>
+                <a href="./v4/index.html" target="_blank" rel="noopener noreferrer" class="doc-link">
+                    Version V4
+                </a>
+                <a href="./v5/index.html" target="_blank" rel="noopener noreferrer" class="doc-link">
+                    Version V5
+                </a>
             </div>
-
         </section>
 
     </main>

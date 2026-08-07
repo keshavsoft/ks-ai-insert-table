@@ -1,58 +1,46 @@
-# Developer Notes – @keshavsoft/kschema-cli
+# Developer Notes – ks-ai-insert-table
 
 ---
 
 ## 🎯 Purpose
 
-This package is **NOT just a CLI**.
-
-It serves two roles:
-1. CLI tool (via `bin/cli.js`)
-2. Internal SDK used by VS Code extension (EndPointGen)
+This package serves two major roles in the API generation lifecycle:
+1. **CLI Tool**: Invoked via `bin/cli.js` to scaffold table templates and routes.
+2. **SDK Reference**: Imported programmatically by external tooling (such as the KeshavSoft VS Code extension `EndPointGen`).
 
 ---
 
 ## 🧩 Architecture
 
-VS Code Extension (EndPointGen)
-→ triggers commands  
-→ calls orchestration  
-→ imports from `@keshavsoft/kschema-cli`  
-→ uses exported functions (like `express`)  
-→ internally maps to `bin/v12/...` implementation  
+The CLI uses a dynamic versioning layout:
+```text
+CLI invocation
+  └─► bin/cli.js 
+        └─► bin/core/getLatestVersion.js (Scans for highest vX directory)
+              └─► bin/core/loadRunner.js (Dynamically imports bin/vX/start.js)
+                    └─► bin/vX/index.js (Executes insertion logic)
+```
+
+As of version 5, it includes safety boundary pre-checks:
+* Before any template files are created or altered, `bin/v5/index.js` imports and runs `ks-ai-insert-table-check` on the target path.
+* If the validation check fails (i.e. `routes.js` is not present in the target directory), execution terminates immediately to avoid corrupted scaffolding.
 
 ---
 
-## 🔗 Important Flow
+## 🔗 Related Ecosystem Projects
 
-```js
-import { express } from "@keshavsoft/kschema-cli";
+### 1. `ks-ai-insert-table-check`
+https://github.com/keshavsoft/ks-ai-insert-table-check
 
-## 🔗 Related Projects
+The pre-check utility package that verifies if target directory paths contain correct routing file structures before any changes are attempted.
 
-### Core Schema Library
-https://www.npmjs.com/package/@keshavsoft/kschema
-
-Minimal config store used internally by CLI.
-
----
-
-### CLI Tool
-https://www.npmjs.com/package/@keshavsoft/kschema-cli
-
-Scaffolding engine used to generate project structures.
-
----
-
-### VS Code Extension (Real Usage)
+### 2. VS Code Extension (`EndPointGen`)
 https://github.com/keshavsoft/EndPointGen
 
-This extension uses `@keshavsoft/kschema-cli` internally  
-to generate and manage project structures.
+Real-world consumer of this SDK, providing developers a graphical user interface in VS Code to scaffold endpoint configurations.
 
 ---
 
 ## 🧠 Note
 
-This CLI is actively used in production via the VS Code extension above.  
-It is not just a standalone tool, but part of a working ecosystem.
+This package is actively run in production systems. Keep the dynamic loader structures (`getLatestVersion.js` and `loadRunner.js`) intact when adding subsequent versions (e.g. `v6`).
