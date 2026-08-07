@@ -3,11 +3,9 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-import runSync from "../../../index.js";
+import runSync from "../../index.js";
+const tableName = "purchases";
 
-const fromNpm = runSync({
-    raka: "v1", poka: "v1111111111",
-    toPath: __dirname,
-});
+const fromNpm = runSync(__dirname, tableName);
 
 console.log("aaaaaa : ", fromNpm);

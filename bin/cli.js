@@ -11,8 +11,25 @@ const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"));
 
-const showHelp = (version) => {
-    console.log(`
+const showHelp = (version, isV4OrLater) => {
+    if (isV4OrLater) {
+        console.log(`
+template-provider-with-discovery CLI v${version}
+
+Usage:
+  npx template-provider-with-discovery <tableName> [toPath]
+
+Arguments:
+  tableName       Name of the table to insert / configure
+  toPath          (Optional) Target path to run discovery and fixing in (default: current working directory)
+
+Options:
+  -h, --help      Show this help message
+  -v, --version   Show CLI version
+  --alterArray    (Optional) JSON string representing array of key/value pairs to replace
+`);
+    } else {
+        console.log(`
 template-provider-with-discovery CLI v${version}
 
 Usage:
@@ -28,13 +45,16 @@ Options:
   -v, --version   Show CLI version
   --alterArray    (Optional) JSON string representing array of key/value pairs to replace
 `);
+    }
 };
 
 const run = async () => {
   const args = process.argv.slice(2);
+  const version = getLatestVersion();
+  const isV4OrLater = parseInt(version.slice(1)) >= 4;
 
   if (args.includes("-h") || args.includes("--help")) {
-      showHelp(pkg.version);
+      showHelp(pkg.version, isV4OrLater);
       process.exit(0);
   }
 
@@ -79,14 +99,29 @@ const run = async () => {
       positionals.push(arg);
   }
 
-  const raka = positionals[0];
-  const poka = positionals[1];
-  const toPath = positionals[2] ? path.resolve(positionals[2]) : process.cwd();
+  let raka;
+  let poka;
+  let toPath;
 
-  if (!raka || !poka) {
-      console.error("\x1b[31mError: Both <raka> and <poka> arguments are required.\x1b[0m");
-      showHelp(pkg.version);
-      process.exit(1);
+  if (isV4OrLater) {
+      raka = positionals[0];
+      toPath = positionals[1] ? path.resolve(positionals[1]) : process.cwd();
+
+      if (!raka) {
+          console.error("\x1b[31mError: <tableName> argument is required.\x1b[0m");
+          showHelp(pkg.version, isV4OrLater);
+          process.exit(1);
+      }
+  } else {
+      raka = positionals[0];
+      poka = positionals[1];
+      toPath = positionals[2] ? path.resolve(positionals[2]) : process.cwd();
+
+      if (!raka || !poka) {
+          console.error("\x1b[31mError: Both <raka> and <poka> arguments are required.\x1b[0m");
+          showHelp(pkg.version, isV4OrLater);
+          process.exit(1);
+      }
   }
 
   if (!fs.existsSync(toPath)) {
@@ -94,7 +129,6 @@ const run = async () => {
       process.exit(1);
   }
 
-  const version = getLatestVersion();
   const runner = await loadRunner(version);
 
   try {

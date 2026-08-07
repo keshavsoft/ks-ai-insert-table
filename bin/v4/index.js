@@ -11,7 +11,8 @@ export default (toPath, tableName) => {
     const fileType = "fromRoutesJsEnd";
     const alterArray = [
         { "key": "<TABLE_NAME>", "value": tableName }
-    ]
+    ];
+
     const source = getSourcePath({ inFileType: fileType });
     const destination = getDestinationPath(toPath, tableName);
 
