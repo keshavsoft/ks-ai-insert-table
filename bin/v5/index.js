@@ -1,11 +1,17 @@
-
 import fixAnyJs from "express-fix-any-js";
+import runCheck from "ks-ai-insert-table-check";
 
 import getSourcePath from "./getSourcePath.js";
 import getDestinationPath from "./getDestinationPath.js";
 import copyTemplate from "./copyTemplate.js";
 
 export default (toPath, tableName) => {
+    const checkResult = runCheck(toPath);
+
+    if (checkResult && checkResult.KTF === false) {
+        return checkResult;
+    }
+
     let fromRakaPoka;
     // const fileType = discover(toPath);
     const fileType = "fromRoutesJsEnd";
@@ -26,5 +32,8 @@ export default (toPath, tableName) => {
         });
     };
 
-    return { fromRakaPoka };
+    return {
+        KTF: true,
+        fromRakaPoka
+    };
 };

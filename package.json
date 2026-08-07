@@ -10,7 +10,8 @@
     "project-generator"
   ],
   "dependencies": {
-    "express-fix-any-js": "^1.31.1"
+    "express-fix-any-js": "^1.31.1",
+    "ks-ai-insert-table-check": "^1.4.1"
   },
   "type": "module",
   "exports": {

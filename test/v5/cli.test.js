@@ -7,11 +7,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..", "..");
 
 const cliPath = path.join(rootDir, "bin", "cli.js");
-const targetDir = path.join(rootDir, "test", "v4", "fromRoutesJsEnd");
+const targetDir = path.join(rootDir, "test", "v5");
 const routesFile = path.join(targetDir, "routes.js");
 const generatedDir = path.join(targetDir, "purchases");
 
-console.log("Running CLI test for v4...");
+console.log("Running CLI test for v5...");
 
 // 1. Ensure routes.js is in pristine state (no purchases imports/uses)
 const originalContent = fs.readFileSync(routesFile, "utf8");
