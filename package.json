@@ -1,6 +1,6 @@
 {
   "name": "ks-ai-insert-table",
-  "version": "1.5.4",
+  "version": "1.6.1",
   "description": "CLI to build for appjs, the endpoints",
   "keywords": [
     "cli",
@@ -11,7 +11,8 @@
   ],
   "dependencies": {
     "express-fix-any-js": "^1.31.1",
-    "ks-ai-insert-table-check": "^1.4.5"
+    "ks-ai-insert-table-check": "^1.4.5",
+    "pattern-collector-base-files": "^1.4.3"
   },
   "devDependencies": {
     "ks-delete-workflow-runs": "^1.0.0"
